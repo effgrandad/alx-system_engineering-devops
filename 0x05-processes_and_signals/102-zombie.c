@@ -16,10 +16,10 @@
  */
 int infinite_while(void)
 {
-	int i;
-	while (i)
+	int l;
+	while (l)
 	{
-		sleep(i);
+		sleep(l);
 	}
 	return (0);
 }
