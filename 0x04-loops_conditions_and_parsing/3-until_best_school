@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Script for "Best School" 10 times using an until loop
+
+h=0
+
+until [ $h -eq 10 ]
+do
+ echo "Best School"
+ (( h++ ))
+done

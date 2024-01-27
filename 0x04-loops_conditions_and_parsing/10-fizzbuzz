@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# write numbers from 1 to 100 in list format
+#  write "FizzBuzz" when the number is a multiplt of 3 and 5
+#  write "Fizz" when number is multiple of 3
+#  write "Buzz" when number is multiple of 5
+#  otherwise, write the number
+
+
+for val in {1..100}
+do
+  if (( val % 3 == 0 && val % 5 == 0 ))
+  then
+    echo "FizzBuzz"
+  elif (( val % 3 == 0 ))
+  then
+    echo "Fizz"
+  elif (( val % 5 == 0 ))
+  then
+    echo "Buzz"
+  else
+    echo "$val"
+  fi
+done
+

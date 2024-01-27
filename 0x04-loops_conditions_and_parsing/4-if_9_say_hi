@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Write "Best School" 10 times using wile loop
+#  on the 9th time, write "Hi" follwed by "Best School"
+
+h=0
+
+while [ $h -lt 10 ]
+do
+ if [ $h eq 9 ]
+ then
+   echo "Hi"
+ fi
+ echo "Best School"
+ (( h++ ))
+done
