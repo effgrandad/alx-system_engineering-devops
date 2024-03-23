@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Show listening ports in relation to listening sockects
+#as well as the PID and name of the respective program for each socket
+nestat -l --program
