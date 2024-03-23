@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 #Show listening ports in relation to listening sockects
 #as well as the PID and name of the respective program for each socket
 nestat -l --program
+=======
+# shows the ports for listening. contains listening sockets as well as
+# socket numbers, program names and PIDs for each socket
+
+netstat -l --program
+>>>>>>> 7e9cc8db1a7d503c5b92e2f2b8d09d367363e252
