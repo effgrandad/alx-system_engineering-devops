@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing
+# install and comfigure a new Ubuntu to local  machine
 # Nginx where it should be listening on port 80
-# Serve a page that would return a Hello World string
-#
+# Serve a page that would display a string that says "Hello World."
 
 
 echo -e "Updating and installing Nginx.\n"
