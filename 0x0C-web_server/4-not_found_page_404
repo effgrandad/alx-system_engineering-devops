@@ -1,25 +1,29 @@
 #!/usr/bin/env bash
-# sets up Nginx server to forward traffic to different website via/redirect_me
+# configures an Nginx server so that /redirect_me redirects to another page.
 # The redirection is configured as a "301 Moved Permanently"
-# includes a personalized "Ceci n'est pas une page" 404 page
+# Includes a custom 404 page containing "Ceci n'est pas une page".
 
-# establishes the directory /etc/nginx/html, which will functionas Nginx's document root
-# opens the /etc/nginx/html directory and creates an empty index.html file
+#  updates the package lists for available software packages.
+apt-get update
+# installs the Nginx web server.
+apt-get install -y nginx
+
+# Creates the /etc/nginx/html directory, which will serve as the document root directory for Nginx.
+mkdir /etc/nginx/html
+#  creates an empty index.html file inside the /etc/nginx/html directory.
 touch /etc/nginx/html/index.html
-# employs the echo command to insert "Hello World!" into the index.html file.
-/etc/nginx/html/index.htm > echo "Hello World!"
-# Sets Nginx to listen on port 80 and serve files from the
-/etc/nginx/html directory
-
+#  sets the content of the index.html file to "Hello World!" using the echo command.
+echo "Hello World!" > /etc/nginx/html/index.html
+# Sets Nginx to listen on port 80 and serve files from the /etc/nginx/html directory.
 printf %s "server {
-     listen      80;
+     listen      80 default_server;
      listen      [::]:80 default_server;
      root        /etc/nginx/html;
      index       index.html index.htm;
 }
 " > /etc/nginx/sites-available/default
 
-# creates an empty file named 404.html inside the /etc/nginx/html directory.
+#  creates an empty file named 404.html inside the /etc/nginx/html directory.
 touch /etc/nginx/html/404.html
 
 # Paste a 404 response in the 404.html file
@@ -56,4 +60,3 @@ sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 # Test nginx configuration and reload
 sudo nginx -t
 sudo service nginx reload
-
