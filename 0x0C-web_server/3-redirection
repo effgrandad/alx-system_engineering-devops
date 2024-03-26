@@ -1,48 +1,36 @@
 #!/usr/bin/env bash
-# Installs Nginx with the settings listed below
-#+  Listens on port 80
-#+  When questioned, returns a page with "Hello World!"
-#++  at the root with curl GET request
+# Configures a new ubuntu machine by installing
+# Nginx where it should be listening on port 80
+# Serve a page that would return a Hello World string
+#
 
-# adds new software packages to the package listings
-apt-get update
-# install Nginx web server
-apt-get isnatll -y nginx
 
-# establishes the directory /etc/nginx/html, which will functionas Nginx's document root
-# opens the /etc/nginx/html directory and creates an empty index.html file
-touch /etc/nginx/html/index.html
-# employs the echo command to insert "Hello World!" into the index.html file.
-/etc/nginx/html/index.htm > echo "Hello World!"
-# Sets Nginx to listen on port 80 and serve files from the
-/etc/nginx/html directory
+echo -e "Updating and installing Nginx.\n"
+sudo apt-get update -y -qq && \
+         sudo apt-get install nginx -y
 
-printf %s "server {
-     listen      80;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html index.htm;
-}
-" > /etc/nginx/sites-available/default
+echo -e "\nSetting up some minor stuff.\n"
 
-# Configure a new server block for redirection
-echo "server {
-    listen 80;
-    listen [::]:80;
+# initiating nginx service
+sudo service nginx start
 
-    root /var/www/html;
+# allowing nginx on firewall
+sudo ufw allow 'Nginx HTTP'
 
-    # Add index.php to the list if you are using PHP
-    index index.html index.htm index.nginx-debian.html;
+# provide the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
 
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}" | sudo tee /etc/nginx/sites-available/redirec
+# Backup default index
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
 
-Turn on the updated site setup.
-sudo ln -s redirect /etc/nginx/sites-enabled /etc/nginx/available
+# Creating new index
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
 
-#Test Nginx configuration and reload
-sudo nginx -t
-sudo service nginx reload
+# Setting up /redirect_me to a youtube video
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Restarting nginx
+sudo service nginx restart
+
+echo -e "\nCompleted.\n"
