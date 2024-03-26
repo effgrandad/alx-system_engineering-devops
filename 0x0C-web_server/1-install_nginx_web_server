@@ -7,7 +7,7 @@
 # adds new software packages to the package listings
 apt-get update
 # install Nginx web server
-apt-get isnatll -y nginx
+apt-get install -y nginx
 
 # establishes the directory /etc/nginx/html, which will functionas Nginx's document root
 # opens the /etc/nginx/html directory and creates an empty index.html file
