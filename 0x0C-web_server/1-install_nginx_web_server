@@ -1,22 +1,21 @@
 #!/usr/bin/env bash
-# Installs Nginx with the settings listed below
-#+  Listens on port 80
-#+  When questioned, returns a page with "Hello World!"
-#++  at the root with curl GET request
+# Installs Nginx with the following configurations:
+#+    Listens on port 80.
+#+    Returns a page containing "Hello World!" when queried
+#++    at the root with a curl GET request.
 
-# adds new software packages to the package listings
+#  updates the package lists for available software packages.
 apt-get update
-# install Nginx web server
+# installs the Nginx web server.
 apt-get install -y nginx
 
-# establishes the directory /etc/nginx/html, which will functionas Nginx's document root
-# opens the /etc/nginx/html directory and creates an empty index.html file
+# Creates the /etc/nginx/html directory, which will serve as the document root directory for Nginx.
+mkdir /etc/nginx/html
+#  creates an empty index.html file inside the /etc/nginx/html directory.
 touch /etc/nginx/html/index.html
-# employs the echo command to insert "Hello World!" into the index.html file.
-/etc/nginx/html/index.htm > echo "Hello World!"
-# Sets Nginx to listen on port 80 and serve files from the
-/etc/nginx/html directory
-
+#  sets the content of the index.html file to "Hello World!" using the echo command.
+echo "Hello World!" > /etc/nginx/html/index.html
+# Sets Nginx to listen on port 80 and serve files from the /etc/nginx/html directory.
 printf %s "server {
      listen      80;
      listen      [::]:80 default_server;
@@ -25,6 +24,6 @@ printf %s "server {
 }
 " > /etc/nginx/sites-available/default
 
-# Restarting Nginx will enable the configuration changes to take effect
-nginx service restart
+# Restarts the Nginx service to apply the configuration changes.
+service nginx restart
 
