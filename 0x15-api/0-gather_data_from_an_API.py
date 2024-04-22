@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-returns the contents of a to-do list for a certain employee ID
-"""
+"""returns the contents of a to-do list for a certain employee ID"""
 
 import re
 import requests
