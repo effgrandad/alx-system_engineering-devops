@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """exports a JSON formatted to-do list for every employee"""
-
 import json
 import requests
 
