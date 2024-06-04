@@ -2,6 +2,7 @@
 """A program that publishes the titles of the
 top 10 popular posts for a specific subreddit
 after submitting a query to the Reddit API"""
+
 import requests
 
 
@@ -15,7 +16,7 @@ def top_ten(subreddit):
         "limit": 10
     }
     response = requests.get(url, headers=headers, params=params,
-                            allow_rdirects=False)
+                            allow_redirects=False)
     if response.status_code == 404:
         print("None")
         return
