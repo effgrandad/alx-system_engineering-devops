@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""A feature that retrieves the quantity of
-subscribes from the Reddit API"""
+"""
+script that asks members of a certain Reddit subreddit questions.
+"""
 
 import requests
 
